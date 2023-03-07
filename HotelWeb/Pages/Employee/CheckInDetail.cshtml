@@ -1,0 +1,270 @@
+﻿@page
+@model HotelWeb.Pages.Employee.CheckInDetailModel
+@{
+}
+
+<style>
+    p {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+    }
+
+    #Edit {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        color: #2196F3 !important;
+        width: 25px !important;
+    }
+
+    #increase {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        color: #2196F3 !important;
+        width: 25px !important;
+    }
+
+    #decrease {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        color: #FF0000 !important;
+        width: 25px !important;
+    }
+</style>
+<div class="container-fluid  mt-2" style="height: 100%">
+    <div class="row pt-4" style="height: 100%">
+        <div class="col-xl-3 ">
+            <div class="card  mb-2 overflow-auto w-100 border" style="height: 400px">
+                <div class=" mb-2  card-header">Room In Booking</div>
+                @foreach (var room in Model.RoomList)
+                {
+                    <div class="mb-5 border rounded row " style="width:96%; height: 200px; margin-left: 10px; padding-right: 10px">
+                        <div class="col-4" style="padding: 10px">
+                            <img class="" src="~/img/@room.Image" style="height: 120px; width: 120px;" alt="Card image cap">
+                        </div>
+                        <div class="col-8">
+                            <h2 class=" mt-1 mb-1 text-center card-title"> @room.Title</h2>
+                            @foreach (var roomtype in Model.RoomTypeList)
+                            {
+                                if (roomtype.Id == room.RoomTypeId)
+                                {
+                                    <p class="card-text">Type: @roomtype.Title</p>
+                                }
+                            }
+                            <p class="card-text">Price: @room.Amount.000đ / 1 đêm</p>
+                        </div>
+                    </div>
+                }               
+               
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="w-100 mt-5 btn btn-primary" style="height:42px; margin:0">Add New Room In Order</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @foreach (var item in Model.RoomAllList)
+                                    {
+                                        if (Model.first.Any(x => x.Id == item.Id) == false)
+                                        {
+                                    <div class="  mb-5">
+                                       
+                                            <div class=" border rounded row" style=" height:200px ; margin-top:10px; margin-bottom:30px; margin-left:50px; margin-right:20px">
+
+                                                <div class="col-4" style="padding: 10px">
+                                                    <img class="" src="~/img/@item.Image" style="height:80px; width:80px;" alt="Card image cap">
+                                                </div>
+                                                <div class="col-8">
+
+                                                    <h2 class=" mt-1 mb-1 text-center card-title"> @item.Title</h2>
+                                                    @foreach (var type in Model.RoomTypeList)
+                                                    {
+                                                        if (item.RoomTypeId == type.Id)
+                                                        {
+                                                            <p class="card-text">Type: @type.Title</p>
+                                                        }
+                                                    }
+                                                    <p class="card-text">Price: @(@item.Amount * decimal.Parse(Model.ts.Days.ToString()) ).000đ / @Model.ts.Days.ToString() Day</p>
+                                                    <p class="card-text"></p>
+                                                    <input type="hidden" asp-for="@item.Id"  />
+                                                    <form method="post" asp-page-handler="AddRoom" asp-route-id="@item.Id"  asp-route-bookid=" @Model.BookRoom.Id">
+                                                        <button type="submit" id="Booking" class="btn btn-primary">Booking</button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                      
+                                    </div>
+
+                                        }
+
+                                    }
+                                </div>
+                                <
+                            </div>
+                        </div>
+                    </div>
+                
+
+            </div>
+            <div class="card mt-3 overflow-auto w-100 border" style="height: 400px">
+                <div class=" mb-2 card-header">Service In Booking</div>
+                @foreach (var service in Model.ServiceListInRoom)
+                {
+
+                    <div class="mb-5 border rounded row " style="width:96%; height: 200px; margin-left: 10px; padding-right: 10px">
+                        <div class="col-4" style="padding: 10px">
+                            <img class="" src="~/img/@service.Image" style="height: 120px; width: 120px; " alt="Card image cap">
+                        </div>
+                        <div class="col-8">
+                            <p class="card-text">Name: @service.Title</p>
+                            @foreach (var roomtype in Model.ServiceTypeList)
+                            {
+                                if (roomtype.Id == service.ServiceTypeId)
+                                {
+                                    <p class="card-text">Type: @roomtype.Title</p>
+                                }
+                            }
+
+
+
+
+                            @foreach (var quantity in Model.ServiceInRoomList)
+                            {
+                                @if (quantity.ServiceId == service.Id && quantity.BookRoomId == Model.BookRoom.Id)
+                                {
+                                    <p class="card-text">quantity: @quantity.Quantity</p>
+                                    <p class="card-text">Price: @(@service.Amount * quantity.Quantity).000đ</p>
+                                }
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="h-100 w-100 border" style="height: 815px">
+                <div class="card-header">Service In Hotel</div>
+                <div class="row mb-3 mt-3">
+
+
+
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ServiceList[0].Image)
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                In Stock
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ServiceList)
+                        {
+                            <form method="post" asp-page-handler="AddService" asp-route-quantity="@Model.QuantityInCart" asp-route-id="@item.Id" asp-route-bookid="@Model.BookRoom.Id" class="ml-0">
+                            <tr>
+
+
+                                <td>
+                                    <img src="~/img/@item.Image" alt="image" height="80" width="80" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @item.Amount.000đ
+                                </td>
+                                <td>
+                                    @item.InStock
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <span asp-validation-for="@Model.QuantityInCart" class="text-danger"></span>
+                                        <input type="number" value="@Model.QuantityInCart" asp-for="@Model.QuantityInCart" />
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <div class="row">
+                                        <div>
+                                            <button id="Edit" class="" type="submit" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xe145;</i></button>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            </form>
+                        }
+                    <tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="card  w-100 border" style="height: 70%">
+                <div class="card-header">Information in Booking</div>
+
+                <div style="margin-left: 10px; margin-bottom: 10px">
+
+
+
+                    <p class="card-text">Email: @Model.Account.Email</p>
+                    <p class="card-text">Name:  @Model.Account.Fullname</p>
+                    <p class="card-text">Phone: @Model.Account.Phone</p>
+
+
+
+                    <p class="card-text">CMND: @Model.BookRoom.Cmnd</p>
+                    <p class="card-text">Check In: @Model.BookRoom.StarTime.ToString()</p>
+                    <p class="card-text">CheckOut: @Model.BookRoom.EndTime.ToString()</p>
+
+                </div>
+
+
+            </div>
+            <div class="card mt-3 w-100 border" style="height: 29%">
+                <div class="card-header">Payment</div>
+                <p class="h1 ml-2 mt-3 mb-5 font-weight-bold">Total: @Model.BookRoom.Total.000đ</p>
+                <form method="post" asp-page-handler="Payment" asp-route-id="@Model.BookRoom.Id">
+                    <button class="w-100 mt-5 btn btn-primary" style="height:42px; margin:0">Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    window.onload = function() {
+        if ('@TempData["Message"]' != "") {
+            alert('@TempData["Message"]');
+        }
+    };
+</script>

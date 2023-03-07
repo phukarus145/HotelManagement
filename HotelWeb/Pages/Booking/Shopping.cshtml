@@ -1,0 +1,150 @@
+﻿@page
+@model HotelWeb.Pages.Booking.ShoppingModel
+@{
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+        font-family: arial;
+    }
+
+    body {
+    
+    }
+
+    .wrapper {
+        position: relative;
+    }
+
+    .sidebar {
+        position: fixed;
+        height: 100%;
+        width: 450px;
+    }
+    #search{
+        margin-top: 100px;
+    }
+    #items {
+        height: 100%;
+        padding:0px;
+        margin: 0px;
+    }
+</style>
+<div class="container-fluid">
+    
+        <div class="row ">
+            <div class="col-3 border-right position-fixed  h-100" style="height: 100%; width:100%;">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger text-center" role="alert">
+                        @ViewBag.ErrorMessage
+                    </div>}
+                <form method="post" asp-page-handler="Search">
+                    <div style="margin-left: 0px" class="">
+                        <h2 class="text-center"> Booking Page </h2>
+                        <div class="text-center" id="search">
+
+                            Search Name Room:
+                            <input asp-for="SearchString" style="margin-bottom: 10px" class="form-control" />
+                            <span asp-validation-for="SearchString" class="text-danger" style="margin-top:10px"></span>
+
+                            <div class="form-group">
+                                <label asp-for="Room.RoomTypeId" class="control-label"></label>
+                                <select asp-for="Room.RoomTypeId" class="form-control">
+                                    <option value="">All</option>
+                                    @foreach (var item in Model.RoomTypeList)
+                                    {
+                                        <option value="@item.Id"> @item.Title</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Room.RoomTypeId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class=" mt-1">
+                                <div class="form-group">
+                                    <label asp-for="CheckIn" class="control-label"></label>
+                                    <input asp-for="CheckIn" class="form-control" />
+                                    <span asp-validation-for="CheckIn" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class=" mt-1">
+                                <div class="form-group">
+                                    <label asp-for="CheckOut" class="control-label"></label>
+                                    <input asp-for="CheckOut" class="form-control" />
+                                    <span asp-validation-for="CheckOut" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class=" mt-1">
+                                <button class="btn btn-primary" type="submit">Filter</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9 " id="items" style="height: 100%; margin-left:450px">
+
+
+                @foreach (var item in Model.RoomList)
+                {
+                    <div class="  mb-5">
+                        <div class=" border rounded row" style=" height:400px ; margin-top:10px; margin-bottom:30px; margin-left:50px; margin-right:20px">
+
+                            <div class="col-4" style="padding: 10px">
+                                <img class="" src="~/img/@item.Image" style="height:100%; width:100%;" alt="Card image cap">
+                            </div>
+                            <div class="col-8">
+                                                         
+                                <h2 class=" mt-1 mb-1 text-center card-title"> @item.Title</h2>
+                                @foreach (var type in Model.RoomTypeList)
+                                {
+                                    if (item.RoomTypeId == type.Id)
+                                    {
+                                        <p class="card-text">Type: @type.Title</p>
+                                    }
+                                }
+
+                                <p class="card-text">CheckIn : @Model.CheckIn.ToShortDateString() </p>
+                                <p class="card-text">CheckOut : @Model.CheckOut.ToShortDateString() </p>
+                                <p class="card-text">Price: @(@item.Amount * decimal.Parse(Model.ts.Days.ToString()) ).000đ / @Model.ts.Days.ToString() Day</p>
+                                <p class="card-text"></p>
+                                @if (Model.first.Any(x => x.Id == item.Id) == true )
+                                {
+                                    <button type="submit"  disabled asp-route-id="@item.Id" asp-route-in="@Model.CheckIn" asp-route-out="@Model.CheckOut" id="Booking" class="btn btn-danger">Not Booking</button>
+                                }
+                                else
+                                {
+                               <a  asp-page="./RoomDetail"  asp-route-id="@item.Id" asp-route-in="@Model.CheckIn" asp-route-out="@Model.CheckOut" id="Booking" class="btn btn-primary">Booking</a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+                
+
+                <div class="container border-top">
+                    &copy; 2022 - HotelWeb - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+        window.onload = function() {
+            if ('@TempData["Message"]' != "") {
+                alert('@TempData["Message"]');
+            }
+    };
+    
+
+</script>

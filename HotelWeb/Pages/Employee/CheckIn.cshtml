@@ -1,0 +1,37 @@
+﻿@page
+@model HotelWeb.Pages.Employee.CheckInModel
+@{
+}
+<div class="container">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger text-center" role="alert">
+            @ViewBag.ErrorMessage
+        </div>}
+    <div class="card  w-100 border" style="height: 70%">
+        <div class="card-header">Information in Booking</div>
+
+        <div style="margin-left: 10px; margin-bottom: 10px">
+
+            <p class="card-text">Email: @Model.Account.Email</p>
+            <p class="card-text">Name:  @Model.Account.Fullname</p>
+            <p class="card-text">Phone: @Model.Account.Phone</p>
+
+            <p class="card-text">Check In: @Model.BookRoom.StarTime.ToString()</p>
+            <p class="card-text">CheckOut: @Model.BookRoom.EndTime.ToString()</p>
+            <p class="card-text">price: @Model.BookRoom.Total</p>
+        </div>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.cmnd" class="control-label"></label>
+                <input asp-for="@Model.cmnd" class="form-control" />
+                <span asp-validation-for="@Model.cmnd" class="text-danger"></span>
+            </div>
+            <input asp-for="BookRoom.Id" type="hidden" class="form-control" />
+            <input asp-for="BookRoom.Cmnd" type="hidden" class="form-control" />
+            <div class="form-group">
+                <input type="submit" value="Check In" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    </div>

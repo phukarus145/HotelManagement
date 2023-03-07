@@ -1,0 +1,64 @@
+﻿@page
+@model HotelWeb.Pages.Booking.RoomDetailModel
+@{
+}
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<div class="container">
+    <form method="post" asp-page-handler="AddtoCart">
+        <div class="row" style="margin-top: 20px">
+
+            <div class="col-6">
+                <img src="~/img/@Model.Room.Image" width="450" height="600" />
+                <input asp-for="Room.Image" type="hidden" class="form-control" />
+                <input asp-for="Room.Title" type="hidden" class="form-control" />
+                <input asp-for="Room.Amount" type="hidden" class="form-control" />
+                <input asp-for="Room.Id" type="hidden" class="form-control" />
+            </div>
+            <div class="col-6">
+                <p class="h2 font-weight-bold">   Room :  @Model.Room.Title </p>
+                <p class="h5 font-weight-bold" style="color: #ADD8E6">    Price :  @(Model.Room.Amount * decimal.Parse(Model.ts.Days.ToString()) ).000Đ / @Model.ts.Days.ToString() Day</p>
+
+                @foreach (var item in Model.RoomTypeList)
+                {
+                    if (item.Id == Model.Room.RoomTypeId)
+                    {
+                        <p class="h5 font-weight-bold" style="color: #ADD8E6"> Type : @item.Title   </p>
+                    }
+
+                }
+
+                <div>
+                    Room amenities
+                </div>
+                <ul style="list-style: none !important;">
+                    <li>There is a window to see the sea</li>
+                    <li>
+                        2 rooms 2 toilets
+
+                    </li>
+                    <li>Free mineral water</li>
+                </ul>
+                <p>
+                    Description : @Model.Room.Description
+                </p>
+                <div class="form-group">
+                    <label asp-for="CheckIn" class="control-label"></label>
+                    <input type="hidden" asp-for="CheckIn" class="form-control" />
+                    <input disabled asp-for="CheckIn" class="form-control" />
+                    <span asp-validation-for="CheckIn" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CheckOut" class="control-label"></label>
+                    <input type="hidden" asp-for="CheckOut" class="form-control" />
+                    <input disabled asp-for="CheckOut" class="form-control" />
+                    <span asp-validation-for="CheckOut" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add To Cart" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

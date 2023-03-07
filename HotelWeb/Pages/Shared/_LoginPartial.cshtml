@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<style>
+    .avatar {
+        vertical-align: middle;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+</style>
+<ul class="navbar-nav">
+    @if (Context.Session.GetString("ROLE") == "AD")
+    {
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-page="/Booking/Cart"><i class="material-icons">&#xe8cc;</i></a>
+        </li>
+    }
+
+    @if (HttpContextAccessor.HttpContext.Session.GetString("EMAIL") != null)
+    {
+<li class="nav-item dropdown show">
+    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="~/img/@HttpContextAccessor.HttpContext.Session.GetString("Avatar")" alt="Avatar" class="avatar">
+        @HttpContextAccessor.HttpContext.Session.GetString("EMAIL")
+    </a>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        @if (Context.Session.GetString("ROLE") != "AD")
+        {
+    <li>
+        <a class="dropdown-item" asp-page="/Profile/MyProfile">My Profile</a>
+    </li>
+                        <li>
+                            <a class="dropdown-item" asp-page="/Profile/ChangePassword">Chang Password</a>
+                        </li>
+                                            @if (Context.Session.GetString("ROLE") == "Customer")
+                                            {
+                        <li>
+                            <a class="dropdown-item" asp-page="/Profile/History">History</a>
+                        </li>}} 
+        <li>
+            <a class="dropdown-item" asp-page="/Logout">Logout</a>
+        </li>
+    </ul>
+
+</li> }
+            else
+            {
+<li class="nav-item">
+    <a class="nav-link" asp-page="/Register">Register</a>
+</li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Login">Login</a>
+                </li>}
+</ul>

@@ -1,0 +1,293 @@
+﻿@page
+@model HotelWeb.Pages.AccountManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<style>
+    #Public {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+ 
+        width: 25px !important;
+    }
+    #Maintenance {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        color: #BFE330 !important;
+        width: 25px !important;
+    }
+
+    #Delete {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        color: #FF0000 !important;
+        width: 25px !important;
+    }
+
+    #Edit {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        color: #2196F3 !important;
+        width: 25px !important;
+    }
+</style>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row mb-3">
+                    <div id="header-title" class="col-sm-5">
+                        <h2>User <b>Management</b></h2>
+                    </div>
+                    <div class="col-sm-4">
+                        <form method="post" asp-page-handler="Search">
+                            <div class=" row">
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control " id="searchBox" asp-for="SearchString" />
+                                </div>
+                                <div class="col-sm-3 mt-1">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="myBtn" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></button>
+                    </div>
+                </div>
+
+                @if (Model.AccountList.Count != 0)
+                {
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccountList[0].Avartar)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccountList[0].Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccountList[0].Fullname)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccountList[0].Phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccountList[0].Active)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.AccountList)
+                            {
+
+                            <tr>
+                                <td>
+                                    <img src="~/img/@item.Avartar" alt="image" height="80" width="80" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fullname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @if (item.Active == true)
+                                    {
+                                        <form method="post" asp-page-handler="UpdateActive" asp-route-id="@item.Id" class="ml-0" onclick="return confirm('Are you sure you want to Update Active this?')">
+                                            <div class="row">
+                                                <div >
+                                                    <button class=" text-success" id="Public" type="submit" title="Public" data-toggle="tooltip"><i class="material-icons">&#xe80b;</i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form method="post" asp-page-handler="UpdateActive" asp-route-id="@item.Id" class="ml-0" onclick="return confirm('Are you sure you want to Update Active this?')">
+                                            <div class="row">
+                                                <div>
+                                                    <button class=" text-success " id="Public"  type="submit" title="Public-Off" data-toggle="tooltip"><i class="material-icons">&#xf1ca;</i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                    }
+                                </td>
+
+                                <td>
+                                                                                      
+                                        <div class="">
+                                            <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id" class="ml-0" onclick="return confirm('Are you sure you want to Delete this?')">
+                                                <div class="row">
+                                                    <div>
+                                                        <button id="Delete" class="" type="submit" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                    </div>
+                                </td>
+                            </tr>
+                                }
+                            <tbody>
+
+                        </table>
+
+                     } else
+                            {
+                            <h1 class="text-danger"> No Result Value!</h1>
+                            }
+                        </div>
+        </div>
+        </div>
+                      
+                      
+                        <!-- Modal Add -->
+                        <div id="myModal" class="modal1">
+                            <div class="modal-content1">
+                                <span class="close">&times;</span>
+
+                                <form method="post" asp-page-handler="Create" enctype="multipart/form-data">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="Account.Email" class="control-label"></label>
+                                        <input asp-for="Account.Email" class="form-control" />
+                                        <span asp-validation-for="Account.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Account.Password" class="control-label"></label>
+                                        <input type="password" asp-for="Account.Password" class="form-control" />
+                                        <span asp-validation-for="Account.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Account.Fullname" class="control-label"></label>
+                                        <input asp-for="Account.Fullname" class="form-control" />
+                                        <span asp-validation-for="Account.Fullname" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Account.Phone" class="control-label"></label>
+                                        <input asp-for="Account.Phone" class="form-control" />
+                                        <span asp-validation-for="Account.Phone" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ImageFile" class="control-label"></label>
+                                        <input asp-for="ImageFile" class="form-control" />
+                                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Account.Gender" class="control-label"></label>
+                                        <select asp-for="Account.Gender" class="form-control">
+                                            <option value="true">Male</option>
+                                            <option value="false">Female</option>
+                                        </select>
+                                        <span asp-validation-for="Account.Gender" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Account.IsEmployee" class="control-label"></label>
+                                        <select asp-for="Account.IsEmployee" class="form-control">
+                                            <option value="true">Employee</option>
+                                            <option value="false">Customer</option>
+                                        </select>
+
+                                        <span asp-validation-for="Account.IsEmployee" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+
+
+                        </div><!-- Modal Delete -->
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header border-bottom-0">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Foo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" asp-page-handler="Delete">
+
+                                        <div class="modal-body">
+                                            xoá chứ ?
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+</script>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    window.onload = function() {
+        if ('@TempData["Message"]' != "") {
+            alert('@TempData["Message"]');
+        }
+    };
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

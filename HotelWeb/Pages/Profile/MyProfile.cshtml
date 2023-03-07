@@ -1,0 +1,375 @@
+﻿
+@page
+@model HotelWeb.Pages.Profile.MyProfileModel
+@{
+}
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<style>
+    #banner {
+        box-shadow: tomato;
+        display: grid;
+        grid-template-columns: 418px 300px;
+        width: 718px;
+        height: 512px;
+        z-index: -1;
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -70%);
+        filter: drop-shadow(0 0 5px #F2E9E4);
+        z-index: 10;
+    }
+
+    #hien {
+        position: absolute;
+        left: 50%;
+        filter: drop-shadow(0 0 5px #F2E9E4);
+        z-index: 10;
+    }
+
+    body {
+    }
+
+    #login {
+        text-align: center;
+        background-color: white;
+    }
+
+    #form-input {
+        position: relative;
+        z-index: 2;
+        border: 2px solid rgba(211, 208, 208, 0.658);
+        border-radius: 4px;
+        height: 50px;
+        padding: 0 20px;
+        transition: 0.25s ease;
+        margin-bottom: 25px;
+        user-select: none;
+    }
+
+        #form-input:focus {
+            --tw-text-opacity: 1;
+            border-color: rgba(37, 99, 235, var(--tw-text-opacity));
+            outline: none;
+            user-select: none;
+        }
+
+    #form-field {
+        position: relative;
+        z-index: 1;
+    }
+
+    #form-label {
+        position: absolute;
+        top: 30%;
+        transform: translateY(-50%);
+        left: 0px;
+        user-select: none;
+        color: rgba(207, 195, 195, 0.795);
+        pointer-events: none;
+        transition: 0.25s ease;
+        padding-bottom: -20px;
+        z-index: 2;
+    }
+
+    #form-input:not(:placeholder-shown) + #form-label, #form-input:focus + #form-label {
+        top: 0px;
+        left: -10px;
+        user-select: none;
+        display: inline-block;
+        background-color: white;
+        color: #575669;
+    }
+
+    #form-input:focus + #form-label {
+        top: 0px;
+        left: -10px;
+        padding: 0px;
+        display: inline-block;
+        background-color: white;
+        --tw-text-opacity: 1;
+        color: rgba(37, 99, 235, var(--tw-text-opacity));
+        user-select: none;
+    }
+
+    #form-field-invalid {
+        position: relative;
+        z-index: 1;
+        color: red;
+        user-select: none;
+    }
+
+    #form-input-invalid {
+        position: relative;
+        z-index: 2;
+        border: 1px solid red;
+        border-radius: 4px;
+        height: 50px;
+        padding: 0 20px;
+        transition: 0.25s ease;
+        margin-bottom: 25px;
+        user-select: none;
+    }
+
+        #form-input-invalid:focus {
+            --tw-text-opacity: 1;
+            outline: none;
+        }
+
+
+    #form-label-invalid {
+        position: absolute;
+        top: 30%;
+        transform: translateY(-50%);
+        left: 0;
+        user-select: none;
+        color: red;
+        pointer-events: none;
+        transition: 0.25s ease;
+        padding-bottom: -20px;
+        z-index: 2;
+        user-select: none;
+    }
+
+    #form-input-invalid:not(:placeholder-shown) + #form-label-invalid, #form-input-invalid:focus + #form-label-invalid {
+        top: 0px;
+        left: 0;
+        padding: -10px;
+        display: inline-block;
+        background-color: white;
+        color: red;
+        user-select: none;
+    }
+
+    #form-input-invalid:focus + #form-label-invalid {
+        top: 0px;
+        left: -10px;
+        padding: 0px;
+        display: inline-block;
+        background-color: white;
+        --tw-text-opacity: 1;
+        color: red;
+        user-select: none;
+    }
+
+    #img {
+        background-color: #BB9F66;
+    }
+
+    #login h2 {
+        margin-top: 22px;
+        color: #f66c08;
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 25px;
+    }
+
+    #login h3 {
+        margin-top: 22px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 25px;
+    }
+
+    #login p {
+        color: #575669;
+        font-size: 11px;
+        line-height: 13px;
+        margin-bottom: 25px;
+    }
+
+    #log {
+        border: 1px solid #eee;
+        border-radius: 4px;
+        width: 70%;
+        color: white;
+        height: 30px;
+        background-color: #32437c;
+        padding: 0 20px;
+        transition: 0.25s ease;
+        margin-bottom: 25px;
+    }
+
+        #log:focus-within {
+            background-color: blue;
+        }
+
+    #gmail {
+        text-align: left;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        width: 70%;
+        height: 1000px;
+        color: #0000008A;
+        height: 30px;
+        background-color: white;
+    }
+
+        #gmail svg {
+            float: left;
+        }
+
+        #gmail div {
+            float: left;
+            padding-left: 10px;
+        }
+
+    #gg {
+        padding-left: 5px;
+    }
+
+
+    #book {
+        margin-top: 50px;
+        margin-left: 9%;
+        width: 249px;
+        height: 400px;
+    }
+    body {
+        margin-top: 20px;
+        background-color: #f2f6fc;
+        color: #69707a;
+    }
+
+    .img-account-profile {
+        height: 10rem;
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    label {
+        cursor: pointer;
+        /* Style as you please, it will become the visible UI component. */
+    }
+
+    #upload-photo {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+</style>
+<div class="container-xl px-4 mt-4">
+
+    <nav class="nav nav-borders">
+        <a class="nav-link active ms-0" asp-page="#" >Profile</a>
+        <a class="nav-link" asp-page="/Profile/ChangePassword" >Change Pasword</a>
+        <a class="nav-link" asp-page="/Profile/History">History</a>
+    </nav>
+    <hr class="mt-0 mb-4">
+    <form method="post" enctype="multipart/form-data" asp-page-handler="Create">
+        <div class="row">
+
+            <div class="col-xl-4">
+                <!-- Profile picture card-->
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+
+                        <img src="~/img/@HttpContextAccessor.HttpContext.Session.GetString("Avatar")" class="img-account-profile  rounded-circle  mb-2" alt="Avatar" style="width: 300px; height: 300px;" class="avatar">
+                        <input asp-for="Account.Avartar" type="hidden" class="form-control" />
+                        <!-- Profile picture upload button-->
+                       
+                        <div class="form-group">
+                            <button class="btn btn-primary" for="upload-photo" type="button">    <label for="upload-photo">Update File Image</label></button>
+                        
+                            <input type="file" asp-for="ImageFile" id="upload-photo" class="form-control" />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+                           
+
+                        </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+
+                        <!-- Form Group (username)-->
+                        <div id="form-field" class="mb-3">
+                            <input asp-for="Account.Email" readonly type="text" id="form-input" style="width: 320px" placeholder=" " />
+                            <label asp-for="Account.Email" style="margin-left:20px; " id='form-label'>Email</label>
+                            <span asp-validation-for="Account.Email" class="text-danger"></span>
+                        </div>
+                        <div id="form-field" class="mb-3">
+                            <input asp-for="Account.Fullname" type="text" id="form-input" style="width: 320px" placeholder=" " />
+                            <label asp-for="Account.Fullname" style="margin-left:20px; " id='form-label'>Full Name</label>
+                            <span asp-validation-for="Account.Fullname" class="text-danger"></span>
+                        </div>
+                        <div id="form-field" class="mb-3">
+                            <input asp-for="Account.Phone" type="text" id="form-input" style="width: 320px" placeholder=" " />
+                            <label asp-for="Account.Phone" style="margin-left:30px; " id='form-label'>Phone</label>
+                            <span asp-validation-for="Account.Phone" class="text-danger"></span>
+                        </div>
+                        <div id="form-field" class="mb-3 form-group">
+                            <label asp-for="Account.Gender" class="control-label"></label>
+                            <select asp-for="Account.Gender" style="width: 320px" class="form-control">
+                                <option value="true">Male</option>
+                                <option value="false">Female</option>
+                            </select>
+                            <span asp-validation-for="Account.Gender" class="text-danger"></span>
+                        </div>
+                        <input asp-for="Account.Id" type="hidden" class="form-control" />
+                        <input asp-for="Account.Active" type="hidden" class="form-control" />
+                        <input asp-for="Account.IsEmployee" type="hidden" class="form-control" />
+                        <input asp-for="Account.Password" type="hidden" class="form-control" />
+                        <!-- Form Row        -->
+                        <!-- Save changes button-->
+                        <div class="form-group">
+                            <button style="padding: 20px 10px" type="submit" value="Save Changes" class="btn btn-primary">
+                                Save Changes
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,64 @@
+﻿@page
+@model HotelWeb.Pages.ServiceManagement.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Service</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post"  enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Service.Id" />
+            <div class="form-group">
+                <label asp-for="Service.ServiceTypeId" class="control-label"></label>
+                <select asp-for="Service.ServiceTypeId" class="form-control">
+                    @foreach (var item in Model.ServiceTypeList)
+                    {
+                        <option value="@item.Id"> @item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="Service.ServiceTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Service.Title" class="control-label"></label>
+                <input asp-for="Service.Title" class="form-control" />
+                <span asp-validation-for="Service.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Service.InStock" class="control-label"></label>
+                <input asp-for="Service.InStock" class="form-control" />
+                <span asp-validation-for="Service.InStock" class="text-danger"></span>
+            </div>
+            <img src="~/img/@Model.Service.Image" width="300" height="300" />
+            <input asp-for="Service.Image" type="hidden" class="form-control" />
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Service.Amount" class="control-label"></label>
+                <input type="number" asp-for="Service.Amount" class="form-control" />
+                <span asp-validation-for="Service.Amount" class="text-danger"></span>
+            </div>
+            <input asp-for="Service.Active" type="hidden" class="form-control" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
