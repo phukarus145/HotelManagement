@@ -15,8 +15,8 @@
 <body>
     <header>
         <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container" >
-                <a class="navbar-brand" asp-area="" asp-page="/Index">KDV-Hotel</a>
+            <div class="container">
+                <a style="color: white !important" class="navbar-brand" asp-area="" asp-page="/Index">KDV-Hotel</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,39 +27,39 @@
                          @if(Context.Session.GetString("ROLE") == "Customer" || Context.Session.GetString("ROLE") == null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                                <a style="color: white !important" class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Booking/Shopping">Booking</a>
+                                <a style="color: white !important" class="nav-link text-dark" asp-area="" asp-page="/Booking/Shopping">Booking</a>
                             </li>
                         }
 
                         @if (Context.Session.GetString("ROLE") == "AD")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark " asp-area="" asp-page="/AccountManagement/Index">Account</a>
+                                <a style="color: white !important" class="nav-link text-dark " asp-area="" asp-page="/AccountManagement/Index">Account</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark " asp-area="" asp-page="/RoomManagement/Index">Room</a>
+                                <a style="color: white !important" class="nav-link text-dark " asp-area="" asp-page="/RoomManagement/Index">Room</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark " asp-area="" asp-page="/RoomTypeManagement/Index">Room Type</a>
+                                <a style="color: white !important" class="nav-link text-dark " asp-area="" asp-page="/RoomTypeManagement/Index">Room Type</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark " asp-area="" asp-page="/ServiceManagement/Index">Service</a>
+                                <a style="color: white !important" class="nav-link text-dark " asp-area="" asp-page="/ServiceManagement/Index">Service</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark " asp-area="" asp-page="/ServiceTypeManagement/Index">Service Type</a>
+                                <a style="color: white !important" class="nav-link text-dark " asp-area="" asp-page="/ServiceTypeManagement/Index">Service Type</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/CouponManagement/Index">Coupon</a>
+                                <a style="color: white !important" class="nav-link text-dark" asp-area="" asp-page="/CouponManagement/Index">Coupon</a>
                             </li>
 
 
                         } @if (Context.Session.GetString("ROLE") == "Employee")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Index">Employee Manager</a>
+                                <a style="color: white !important" class="nav-link text-dark" asp-area="" asp-page="/Employee/Index">Employee Manager</a>
                             </li>
 
                         }
@@ -113,6 +113,7 @@
     }
     body {
         font-family: Arial, Helvetica, sans-serif;
+        color: rgba(0, 59, 149, 1) !important;
     }
     
         /* The Modal (background) */
@@ -128,6 +129,9 @@
         overflow: auto; /* Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .bg-white{
+        background-color: rgba(0, 59, 149, 1) !important;
     }
 
     /* Modal Content */

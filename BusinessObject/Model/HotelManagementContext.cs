@@ -31,7 +31,7 @@ namespace BusinessObject.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Using IConfiguration to get information from json file.
-            optionsBuilder.UseSqlServer("Server=MSI;Database=HotelManagement;Uid=sa;Pwd=123456789;");
+            optionsBuilder.UseSqlServer("Server=(local);Database=HotelManagement;Uid=sa;Pwd=20122001;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

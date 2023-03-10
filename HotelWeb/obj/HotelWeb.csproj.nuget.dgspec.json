@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Code\\SWD\\Hotel_Management\\HotelWeb\\HotelWeb.csproj": {}
+    "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\HotelWeb\\HotelWeb.csproj": {}
   },
   "projects": {
-    "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj": {
+    "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj",
+        "projectUniqueName": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj",
         "projectName": "BusinessObject",
-        "projectPath": "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\obj\\",
+        "projectPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj",
+        "packagesPath": "C:\\Users\\123vn\\.nuget\\packages\\",
+        "outputPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\123vn\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -83,25 +80,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Code\\SWD\\Hotel_Management\\DataAccess\\DataAccess.csproj": {
+    "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\SWD\\Hotel_Management\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Code\\SWD\\Hotel_Management\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\SWD\\Hotel_Management\\DataAccess\\obj\\",
+        "projectPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\123vn\\.nuget\\packages\\",
+        "outputPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\123vn\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -109,14 +102,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj": {
-                "projectPath": "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj"
+              "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj"
               }
             }
           }
@@ -146,25 +140,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Code\\SWD\\Hotel_Management\\HotelWeb\\HotelWeb.csproj": {
+    "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\HotelWeb\\HotelWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\SWD\\Hotel_Management\\HotelWeb\\HotelWeb.csproj",
+        "projectUniqueName": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\HotelWeb\\HotelWeb.csproj",
         "projectName": "HotelWeb",
-        "projectPath": "C:\\Code\\SWD\\Hotel_Management\\HotelWeb\\HotelWeb.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\SWD\\Hotel_Management\\HotelWeb\\obj\\",
+        "projectPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\HotelWeb\\HotelWeb.csproj",
+        "packagesPath": "C:\\Users\\123vn\\.nuget\\packages\\",
+        "outputPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\HotelWeb\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\123vn\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -172,17 +162,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj": {
-                "projectPath": "C:\\Code\\SWD\\Hotel_Management\\BusinessObject\\BusinessObject.csproj"
+              "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\BusinessObject\\BusinessObject.csproj"
               },
-              "C:\\Code\\SWD\\Hotel_Management\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Code\\SWD\\Hotel_Management\\DataAccess\\DataAccess.csproj"
+              "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "D:\\PRN221\\projectThuyetTrinh\\HotelManagement\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -231,7 +222,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

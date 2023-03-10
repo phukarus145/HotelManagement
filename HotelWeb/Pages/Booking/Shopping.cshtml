@@ -44,7 +44,7 @@
                         @ViewBag.ErrorMessage
                     </div>}
                 <form method="post" asp-page-handler="Search">
-                    <div style="margin-left: 0px" class="">
+                <div style="margin-left: 0px; margin-top: 20px;" class="">
                         <h2 class="text-center"> Booking Page </h2>
                         <div class="text-center" id="search">
 
@@ -95,14 +95,13 @@
                 @foreach (var item in Model.RoomList)
                 {
                     <div class="  mb-5">
-                        <div class=" border rounded row" style=" height:400px ; margin-top:10px; margin-bottom:30px; margin-left:50px; margin-right:20px">
+                        <div class=" border rounded row" style=" height:300px ; margin-top:10px; margin-bottom:30px; margin-left:50px; margin-right:20px">
 
                             <div class="col-4" style="padding: 10px">
                                 <img class="" src="~/img/@item.Image" style="height:100%; width:100%;" alt="Card image cap">
                             </div>
                             <div class="col-8">
-                                                         
-                                <h2 class=" mt-1 mb-1 text-center card-title"> @item.Title</h2>
+                                <h2 class=" mt-1 mb-1 card-title"> @item.Title</h2>
                                 @foreach (var type in Model.RoomTypeList)
                                 {
                                     if (item.RoomTypeId == type.Id)
