@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelWeb.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace HotelWeb.ViewModel
     {
         public int ServiceId { get; set; }
 
-    
+        [ProductImageValidation]
         public string Image { get; set; }
 
         

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessObject.Model;
 using DataAccess.Repository;
+using HotelWeb.Validation;
 using HotelWeb.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace HotelWeb.Pages.Booking
         [BindProperty]
         [Required(ErrorMessage = "CheckIn can not be empty")]
         [DataType(DataType.Date)]
+        [DateValidation(CompareToOperation.LessThan, "CheckIn", "CheckOut", ErrorMessage = "CheckIn must not be Greater than CheckOut")]
         public DateTime CheckIn { get; set; }
         [BindProperty]
         public IList<RoomType> RoomTypeList { get; set; }

@@ -32,7 +32,7 @@ namespace HotelWeb.Pages.Booking
         public Room Room { get; set; }
         [BindProperty]
         public BookRoom BookRoom { get; set; }
-        [DateValidation(CompareToOperation.LessThan, "CheckIn", "CheckOut")]
+        [DateValidation(CompareToOperation.LessThan, "CheckIn", "CheckOut", ErrorMessage = "CheckIn must not be Greater than CheckOut")]
         [BindProperty]
         [Required(ErrorMessage = "CheckIn can not be empty")]
         [DataType(DataType.Date)]

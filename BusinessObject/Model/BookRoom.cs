@@ -18,14 +18,17 @@ namespace BusinessObject.Model
         public int Id { get; set; }
         public string CouponId { get; set; }
         public int? AccountId { get; set; }
+
         [Required(ErrorMessage = "StarTime can not be empty")]
         [DataType(DataType.Date)]
-        [Display(Name = "CheckIn")]        public DateTime? StarTime { get; set; }
+        [Display(Name = "CheckIn")]
+        public DateTime? StarTime { get; set; }
+
         [Required(ErrorMessage = "EndTime can not be empty")]
         [DataType(DataType.Date)]
         [Display(Name = "CheckOut")]
-       
         public DateTime? EndTime { get; set; }
+
         [Required(ErrorMessage = "Cmnd can not be empty")]
         [RegularExpression("[0-9]{9,12}", ErrorMessage = "Wrong format for Cmnd number")]
         public decimal? Cmnd { get; set; }
