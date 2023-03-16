@@ -25,7 +25,7 @@
 
     .header ul {
         /* xóa dấu chấm tròn chỉnh kiểu phần danh sách  list style none mât
-        circle| disc | square | decimal |lower-alpha*/
+            circle| disc | square | decimal |lower-alpha*/
         list-style: none;
         background-color: black;
         padding: 15px 0;
@@ -44,7 +44,7 @@
         margin: 0 10px;
         /* top bottom, right left: */
         /* margin: 20px;
-       /* margin-top: 20px; */
+           /* margin-top: 20px; */
         /* top bottom=10px; right, left=20; */
         /* top 10 ; 20: bottom  right, leght:15px*/
         /* margin: 10px 15px 20px; */
@@ -53,11 +53,10 @@
     }
     /* CAROUSEL */
     .carousel {
-        background-image: url("../img/hero_1.jpg");
         background-repeat: no-repeat;
         /* height: 550px; */
         background-size: cover;
-        height: 750px;
+        height: 500px;
         width: 100%;
         background-position: center center;
     }
@@ -74,13 +73,13 @@
         }
 
     /* .intro__left {
-         float: left;
-         width: 50%;
-        }
-        .intro__right {
-          float: left;
-          width: 50%;
-                } */
+             float: left;
+             width: 50%;
+            }
+            .intro__right {
+              float: left;
+              width: 50%;
+                    } */
 
     .intro__left, .intro__right {
         float: left;
@@ -109,7 +108,7 @@
 
 
     /* PRODUCTS
-    float trên 1 hàng*/
+        float trên 1 hàng*/
     .product {
         margin-bottom: 70px;
     }
@@ -200,7 +199,7 @@
         /* 100%-70 = 30 */
         margin: auto;
         /* margin 15%
-      margin 15% thụt vào mỗi bên 15 % */
+          margin 15% thụt vào mỗi bên 15 % */
         text-align: center;
     }
 
@@ -223,7 +222,11 @@
             margin: 0;
         }
 
-
+    .room-image {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
 
 
     /* footer */
@@ -231,15 +234,26 @@
 </style>
 <div class="site-wrap">
 
-    <div class="carousel" data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-7 text-center" style="margin-top: 300px" data-aos="fade">
-                    <h1 class="mb-2 h1 text-capitalize">Welcome To Suites</h1>
-                    <h2 class="caption h4">Hotel &amp; Resort</h2>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @foreach (var item in Model.RoomList)
+            {
+                <div class="carousel-item
+                @if (item == Model.RoomList.First()) {
+                    @Html.Raw("active")
+                 }">
+                    <img class="room-image" src="~/img/@item.Image" alt="Card image cap">
                 </div>
-            </div>
+            }
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 
     <div class="site-section bg-light">
@@ -368,8 +382,8 @@
                         <span class="icon-clock-o text-white h2 d-block"></span>
                         <h2>Service Times</h2>
                         <p class="mb-0">
-                          Check In  12:00AM 
-                          Check Out 10:00AM
+                            Check In  12:00AM
+                            Check Out 10:00AM
                         </p>
                     </div>
                 </div>
@@ -387,10 +401,5 @@
         </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - HotelWeb - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
 </div>
